@@ -62,4 +62,12 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.logging.interceptor)
+
+    //RXJAVA
+    implementation(libs.rxjava)
+    implementation(libs.rxandroid)
+    implementation(libs.adapter.rxjava3)
+    implementation(libs.androidx.room.rxjava3)
+    implementation(libs.androidx.lifecycle.reactivestreams.ktx)
+
 }
