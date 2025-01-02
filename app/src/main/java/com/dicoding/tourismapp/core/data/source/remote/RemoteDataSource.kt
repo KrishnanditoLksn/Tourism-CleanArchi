@@ -1,15 +1,14 @@
 package com.dicoding.tourismapp.core.data.source.remote
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.annotation.SuppressLint
 import com.dicoding.tourismapp.core.data.source.remote.network.ApiResponse
 import com.dicoding.tourismapp.core.data.source.remote.network.ApiService
-import com.dicoding.tourismapp.core.data.source.remote.response.ListTourismResponse
 import com.dicoding.tourismapp.core.data.source.remote.response.TourismResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.BackpressureStrategy
+import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import io.reactivex.rxjava3.subjects.PublishSubject
 
 class RemoteDataSource private constructor(private val apiService: ApiService) {
     companion object {
@@ -22,27 +21,23 @@ class RemoteDataSource private constructor(private val apiService: ApiService) {
             }
     }
 
-    fun getAllTourism(): LiveData<ApiResponse<List<TourismResponse>>> {
-        val resultData = MutableLiveData<ApiResponse<List<TourismResponse>>>()
+    @SuppressLint("CheckResult")
+    fun getAllTourism(): Flowable<ApiResponse<List<TourismResponse>>> {
+        val resultData = PublishSubject.create<ApiResponse<List<TourismResponse>>>()
 
         val client = apiService.getList()
 
-        client.enqueue(object : Callback<ListTourismResponse> {
-            override fun onResponse(
-                call: Call<ListTourismResponse>,
-                response: Response<ListTourismResponse>
-            ) {
-                val datas = response.body()?.places
-                resultData.value =
-                    if (datas != null) ApiResponse.Success(datas) else ApiResponse.Empty
-            }
+        client.subscribeOn(Schedulers.computation())
+            .observeOn(AndroidSchedulers.mainThread())
+            .take(1)
+            .subscribe({ res ->
+                val dataArray = res.places
+                resultData.onNext(if (dataArray.isNotEmpty()) ApiResponse.Success(dataArray) else ApiResponse.Empty)
+            }, { err ->
+                resultData.onNext(ApiResponse.Error(err.message.toString()))
+            })
 
-            override fun onFailure(p0: Call<ListTourismResponse>, p1: Throwable) {
-                resultData.value = ApiResponse.Error(p1.message.toString())
-                Log.e("RemoteDataSource", p1.message.toString())
-            }
-        })
-        return resultData
+        return resultData.toFlowable(BackpressureStrategy.BUFFER)
     }
 }
 
