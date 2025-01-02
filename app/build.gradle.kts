@@ -70,4 +70,6 @@ dependencies {
     implementation(libs.androidx.room.rxjava3)
     implementation(libs.androidx.lifecycle.reactivestreams.ktx)
 
+    //Koin Dep Injection
+    implementation(libs.koin.android)
 }
