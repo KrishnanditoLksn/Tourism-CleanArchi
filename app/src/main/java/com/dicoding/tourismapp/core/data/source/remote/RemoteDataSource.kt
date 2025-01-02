@@ -10,17 +10,7 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 
-class RemoteDataSource private constructor(private val apiService: ApiService) {
-    companion object {
-        @Volatile
-        private var instance: RemoteDataSource? = null
-
-        fun getInstance(apiService: ApiService): RemoteDataSource =
-            instance ?: synchronized(this) {
-                instance ?: RemoteDataSource(apiService)
-            }
-    }
-
+class RemoteDataSource(private val apiService: ApiService) {
     @SuppressLint("CheckResult")
     fun getAllTourism(): Flowable<ApiResponse<List<TourismResponse>>> {
         val resultData = PublishSubject.create<ApiResponse<List<TourismResponse>>>()
