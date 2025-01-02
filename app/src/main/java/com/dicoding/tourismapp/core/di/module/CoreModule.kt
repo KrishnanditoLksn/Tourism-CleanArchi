@@ -17,16 +17,16 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-class CoreModule {
+object CoreModule {
     val databaseModule = module {
         factory {
             get<TourismDatabase>().tourismDao()
-            single {
-                Room.databaseBuilder(
-                    androidContext(),
-                    TourismDatabase::class.java, "Tourism_db"
-                ).fallbackToDestructiveMigration().build()
-            }
+        }
+        single {
+            Room.databaseBuilder(
+                androidContext(),
+                TourismDatabase::class.java, "Tourism_db"
+            ).fallbackToDestructiveMigration().build()
         }
     }
 
