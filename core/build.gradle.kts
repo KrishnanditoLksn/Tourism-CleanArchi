@@ -1,23 +1,21 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrains.kotlin.android)
-    alias(libs.plugins.ksp)
     id("kotlin-parcelize")
     alias(libs.plugins.hiltAndroid)
+    alias(libs.plugins.ksp)
+
 }
 
 android {
-    namespace = "com.dicoding.tourismapp"
+    namespace = "app.culturedev.core"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.dicoding.tourismapp"
         minSdk = 24
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -43,13 +41,27 @@ android {
 }
 
 dependencies {
-    implementation(project(":core"))
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.fragment.ktx)
-    implementation(libs.androidx.lifecycle.livedata.ktx)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
+    api(libs.recyclerview)
+    api(libs.material)
+    api(libs.glide)
+
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
+    androidTestImplementation(libs.room.testing)
+
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     //RXJAVA
     implementation(libs.rxjava)
@@ -57,4 +69,8 @@ dependencies {
     implementation(libs.adapter.rxjava3)
     implementation(libs.androidx.room.rxjava3)
     implementation(libs.androidx.lifecycle.reactivestreams.ktx)
+
+//    //DAGGER HILT
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 }
