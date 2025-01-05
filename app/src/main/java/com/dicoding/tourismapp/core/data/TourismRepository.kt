@@ -11,13 +11,15 @@ import com.dicoding.tourismapp.core.utils.DataMapper
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class TourismRepository(
+@Singleton
+class TourismRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors
 ) : ITourismRepository {
-
     override fun getAllTourism(): Flowable<Resource<List<Tourism>>> =
         object : NetworkBoundResource<List<Tourism>, List<TourismResponse>>(appExecutors) {
             override fun loadFromDB(): Flowable<List<Tourism>> {

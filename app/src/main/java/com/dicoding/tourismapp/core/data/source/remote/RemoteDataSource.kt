@@ -9,8 +9,11 @@ import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class RemoteDataSource(private val apiService: ApiService) {
+@Singleton
+class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
     @SuppressLint("CheckResult")
     fun getAllTourism(): Flowable<ApiResponse<List<TourismResponse>>> {
         val resultData = PublishSubject.create<ApiResponse<List<TourismResponse>>>()
