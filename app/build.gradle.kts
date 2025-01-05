@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ksp)
     id("kotlin-parcelize")
+    alias(libs.plugins.hiltAndroid)
 }
 
 android {
@@ -70,4 +71,11 @@ dependencies {
     implementation(libs.androidx.room.rxjava3)
     implementation(libs.androidx.lifecycle.reactivestreams.ktx)
 
+//    //DAGGER
+//    implementation(libs.dagger)
+//    ksp(libs.dagger.compiler)
+
+    //DAGGER HILT
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 }
