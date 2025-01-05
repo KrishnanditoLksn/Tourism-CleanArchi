@@ -43,26 +43,13 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraintlayout)
+    implementation(project(":core"))
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.fragment.ktx)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
 
-    implementation(libs.recyclerview)
-    implementation(libs.material)
-    implementation(libs.glide)
-
-    implementation(libs.room.runtime)
-    ksp(libs.room.compiler)
-    androidTestImplementation(libs.room.testing)
-
-    implementation(libs.retrofit)
-    implementation(libs.converter.gson)
-    implementation(libs.logging.interceptor)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 
     //RXJAVA
     implementation(libs.rxjava)
@@ -70,8 +57,4 @@ dependencies {
     implementation(libs.adapter.rxjava3)
     implementation(libs.androidx.room.rxjava3)
     implementation(libs.androidx.lifecycle.reactivestreams.ktx)
-
-    //DAGGER HILT
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
 }
