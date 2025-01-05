@@ -5,9 +5,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.IntentCompat.getParcelableExtra
+import app.culturedev.core.domain.model.Tourism
 import com.bumptech.glide.Glide
 import com.dicoding.tourismapp.R
-import com.dicoding.tourismapp.core.domain.model.Tourism
 import com.dicoding.tourismapp.databinding.ActivityDetailTourismBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -15,18 +15,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailTourismActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailTourismBinding
-    private  val detailTourismViewModel: DetailTourismViewModel by viewModels()
+    private val detailTourismViewModel: DetailTourismViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailTourismBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
-
-//        val factory = ViewModelFactory.getInstance(this)
-//        detailTourismViewModel =
-//            ViewModelProvider(this, factory)[DetailTourismViewModel::class.java]
-
         val detailTourism = getParcelableExtra(intent, EXTRA_DATA, Tourism::class.java)
         showDetailTourism(detailTourism)
     }
