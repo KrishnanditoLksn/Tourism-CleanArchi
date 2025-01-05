@@ -71,3 +71,4 @@ class DetailTourismActivity : AppCompatActivity() {
         const val EXTRA_DATA = "extra_data"
     }
 }
+

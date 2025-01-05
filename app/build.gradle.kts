@@ -71,10 +71,6 @@ dependencies {
     implementation(libs.androidx.room.rxjava3)
     implementation(libs.androidx.lifecycle.reactivestreams.ktx)
 
-//    //DAGGER
-//    implementation(libs.dagger)
-//    ksp(libs.dagger.compiler)
-
     //DAGGER HILT
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
