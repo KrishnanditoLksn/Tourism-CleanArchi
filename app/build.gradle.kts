@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.dicoding.tourismapp"
-        minSdk = 24
+        minSdk = 28
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -40,6 +40,7 @@ android {
         viewBinding = true
         buildConfig = true
     }
+    dynamicFeatures += setOf(":maps")
 }
 
 dependencies {
@@ -48,13 +49,14 @@ dependencies {
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
-
     //RXJAVA
-    implementation(libs.rxjava)
-    implementation(libs.rxandroid)
-    implementation(libs.adapter.rxjava3)
-    implementation(libs.androidx.room.rxjava3)
-    implementation(libs.androidx.lifecycle.reactivestreams.ktx)
+    api(libs.rxjava)
+    api(libs.rxandroid)
+    api(libs.adapter.rxjava3)
+    api(libs.androidx.room.rxjava3)
+    api(libs.androidx.lifecycle.reactivestreams.ktx)
+
+//    //DAGGER HILT
+    api(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 }
