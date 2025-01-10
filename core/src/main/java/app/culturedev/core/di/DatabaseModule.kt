@@ -23,6 +23,6 @@ class DatabaseModule {
         ).fallbackToDestructiveMigration().build()
 
     @Provides
-    fun providesDatabase(database: TourismDatabase): TourismDao = database.tourismDao()
+    fun providesTourismDao(database: TourismDatabase): TourismDao = database.tourismDao()
 
 }
