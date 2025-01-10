@@ -23,6 +23,8 @@ room = "2.6.1"
 roomCompiler = "2.6.1"
 rxandroid = "3.0.2"
 rxjava = "3.1.5"
+annotation = "1.9.1"
+activity = "1.8.0"
 
 [libraries]
 adapter-rxjava3 = { module = "com.squareup.retrofit2:adapter-rxjava3", version.ref = "adapterRxjava3" }
@@ -51,6 +53,8 @@ room-compiler = { group = "androidx.room", name = "room-compiler", version.ref =
 room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
 rxandroid = { module = "io.reactivex.rxjava3:rxandroid", version.ref = "rxandroid" }
 rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -58,3 +62,4 @@ jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = 
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp"}
 hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
+androidDynamicFeature = { id = "com.android.dynamic-feature", version.ref = "agp" }
