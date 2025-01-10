@@ -12,7 +12,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 28
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -64,13 +64,13 @@ dependencies {
     implementation(libs.logging.interceptor)
 
     //RXJAVA
-    implementation(libs.rxjava)
-    implementation(libs.rxandroid)
-    implementation(libs.adapter.rxjava3)
-    implementation(libs.androidx.room.rxjava3)
-    implementation(libs.androidx.lifecycle.reactivestreams.ktx)
+    api(libs.rxjava)
+    api(libs.rxandroid)
+    api(libs.adapter.rxjava3)
+    api(libs.androidx.room.rxjava3)
+    api(libs.androidx.lifecycle.reactivestreams.ktx)
 
 //    //DAGGER HILT
-    implementation(libs.hilt.android)
+    api(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
 }

@@ -5,13 +5,13 @@ import app.culturedev.core.domain.usecase.TourismUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
-import dagger.hilt.android.scopes.ViewModelScoped
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
-@InstallIn(ViewModelComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class AppModule {
     @Binds
-    @ViewModelScoped
+    @Singleton
     abstract fun provideTourismUseCase(tourismInteractor: TourismInteractor): TourismUseCase
 }
